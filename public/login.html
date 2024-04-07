@@ -20,33 +20,87 @@
             <a class="nav" href="index.html"><img src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FHOME%20BLACK.png?alt=media&token=94c16ca7-eec3-4c9d-9a66-8b08bc64f25c" onmouseover="this.src='https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FHOME%20BLUE.png?alt=media&token=a7d81eed-45bd-4a12-bae3-f50e6cb31679';" onmouseout="this.src='https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FHOME%20BLACK.png?alt=media&token=94c16ca7-eec3-4c9d-9a66-8b08bc64f25c';" id="profile" style="width: 42px;height:42px;"></a>
         </div>
         <main>
-            <div class="titleDiv">
-                <h1 class="title">Log In</h1>
+            <div id = "loginDiv">
+                <div class="titleDiv">
+                    <h1 class="title">Log In</h1>
+                </div>
+                <div class="lineDiv">
+                    <hr class="line"></hr>
+                </div>
+                <div id="loginForm">
+                    <div class="inputDiv">
+                        <input id="emailSignIn" type="email" placeholder="Email" class="input"/>
+                        <input id="passwordSignIn" type="password" placeholder="Password" class="input"/>
+                    </div>
+                    <div class="buttonDiv">
+                        <div class="spacer" style="margin-top:50px"></div>
+                        <button class="button" id="loginButton">Login</button> 
+                    </div>
+                    <div class="switchLoginSignup">
+                        <p style="font-family: 'Courier', 'Sans';">Don't have an account?&nbsp<p id="createAcctLink" onclick="createAcctLink()">Create one here</p></p>
+                    </div>
+                    <div id="loginErrorDiv" class="loginSignupErrorDiv">
+                        <p id = "loginErrorMessage"></p>
+                    </div>
+                </div>
             </div>
-            <div class="lineDiv">
-                <hr class="line"></hr>
-            </div>
-            <div id="loginForm">
+
+            <div id="signupDiv" style="position: absolute; visibility: hidden; top:50px;">
+                <div class="titleDiv">
+                    <h1 class="title">Create Account</h1>
+                </div>
+                <div class="lineDiv">
+                    <hr class="line"></hr>
+                </div>
                 <div class="inputDiv">
-                    <input id="emailSignIn" type="email" placeholder="Email" class="input"/>
-                    <input id="passwordSignIn" type="password" placeholder="Password" class="input"/>
+                    <input id="emailSignup" type="email" placeholder="Email" class="input"/>
+                    <input id="passwordSignup" type="password" placeholder="Password" class="input"/>
                 </div>
                 <div class="buttonDiv">
                     <div class="spacer" style="margin-top:50px"></div>
-                    <button class="button" id="loginButton">Login</button> 
+                    <button class="button" id="signupButton">Signup</button> 
                 </div>
                 <div class="switchLoginSignup">
-                    <p style="font-family: 'Courier', 'Sans';">Don't have an account? <a href="createAcct.html"> Create one here</a></p>
+                    <p style="font-family: 'Courier', 'Sans';">Already have an account?&nbsp<p id="loginLink" onclick="loginLink()">Login here</p></p>
                 </div>
-                <div id="loginErrorDiv" class="loginSignupErrorDiv">
-                    <p id = "loginErrorMessage">test</p>
+                <div id="signupErrorDiv" class="loginSignupErrorDiv">
+                    <p id = "signupErrorMessage"></p>
                 </div>
             </div>
+            <div id="acctDiv">
+                <div class="titleDiv">
+                    <h1 class="title">Welcome, [PLACEHOLDER]!</h1>
+                </div>
+                <div id="userInfo">
+                    <img class="acctDetails" style="height:5%"src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FMail%20logo.png?alt=media&token=8980620e-266e-4dca-b06e-7d6e4b496b77">
+                    <p id="userEmail" class="acctDetails" style="bottom: 12px; left:10px;"></p>
+                </div>
+                <div class="buttonDiv">
+                    <div class="spacer" style="margin-top:50px"></div>
+                    <button class="button" id="logoutButton">Log Out</button> 
+                </div>
+                
+            </div>
+            
             <div class="footerLogIn">
                 <hr style="margin-top: 75px;"></hr>
                 <p class="footerText">©2024 Cody Casanave</p>
                 <img class="footerImage" src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FCODYCOOKS.png?alt=media&token=fca0391f-c5fb-4133-8fde-4b9bcd8e5e1a">
             </div>
         </main>
+
+        <script>
+            function createAcctLink () {
+                document.getElementById("signupDiv").style.visibility = "visible";
+                document.getElementById("loginDiv").style.visibility = "hidden";
+                document.getElementById("loginErrorMessage").innerHTML = "";
+            }
+
+            function loginLink () {
+                document.getElementById("signupDiv").style.visibility = "hidden";
+                document.getElementById("loginDiv").style.visibility = "visible";
+                document.getElementById("signupErrorMessage").innerHTML = "";
+            }
+        </script>
     </body>
 </html>

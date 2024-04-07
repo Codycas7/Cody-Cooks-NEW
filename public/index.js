@@ -7,7 +7,8 @@ import {
   signInWithEmailAndPassword,
   AuthErrorCodes,
   createUserWithEmailAndPassword,
-  onAuthStateChanged
+  onAuthStateChanged,
+  signOut
 } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -49,8 +50,8 @@ const loginEmailPassword = async () => {
 document.getElementById("loginButton").addEventListener("click", loginEmailPassword);
 
 const createAccount = async () => {
-  const loginEmail = document.getElementById("emailSignIn").value;
-  const loginPassword = document.getElementById("passwordSignIn").value;
+  const loginEmail = document.getElementById("emailSignup").value;
+  const loginPassword = document.getElementById("passwordSignup").value;
 
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword);
@@ -58,12 +59,13 @@ const createAccount = async () => {
   }
   catch (error) {
     console.log(error);
-    showLoginerror(error);
+    showSignupError(error);
   }
 }
 
+document.getElementById("signupButton").addEventListener("click", createAccount);
+
 function showLoginerror (error) {
-  document.getElementById("loginErrorDiv").style.visibility = "visible";
   if (error.code == AuthErrorCodes.INVALID_PASSWORD) {
     document.getElementById("loginErrorMessage").innerHTML = "Wrong password. Try again.";
   }
@@ -72,15 +74,42 @@ function showLoginerror (error) {
   }
 }
 
+function showSignupError (error) {
+  if (error.code == AuthErrorCodes.INVALID_PASSWORD) {
+    document.getElementById("signupErrorMessage").innerHTML = "Wrong password. Try again.";
+  }
+  else {
+    document.getElementById("signupErrorMessage").innerHTML = `Error: ${error.message}`;
+  }
+}
+
 const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
     if (user) {
+      hideElements();
+      document.getElementById("userEmail").innerHTML = user.email;
       console.log(user);
     }
     else {
-      console.log("fail");
+      document.getElementById("acctDiv").style.visibility = "hidden";
+      document.getElementById("loginDiv").style.visibility = "visible";
     }
   })
 }
 
+function hideElements () {
+  document.getElementById("signupDiv").style.visibility = "hidden";
+  document.getElementById("loginDiv").style.visibility = "hidden";
+  document.getElementById("loginErrorMessage").innerHTML = "";
+  document.getElementById("signupErrorMessage").innerHTML = "";
+  document.getElementById("signupDiv").style.visibility = "hidden";
+  document.getElementById("acctDiv").style.visibility = "visible";
+}
+
 monitorAuthState();
+
+const logout = async () => {
+  await signOut(auth);
+}
+
+document.getElementById("logoutButton").addEventListener("click", logout);

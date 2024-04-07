@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css" />
+        <title>Account</title>
+        <link rel="stylesheet" href="https://use.typekit.net/fpm8fms.css">
+        <script type="module" src="/public/testSignUp.js"></script>
+    </head>
+    <body>
+        <nav class="navDiv">
+            <a class="nav" href="recipes.html">Recipes</a>
+            <a class="nav" href="pics.html">Photos</a>
+            <a class="nav" href="guest.html">Guest Features</a>
+            <a class="nav" href="abtMe.html">About Me</a>
+            <a class="nav" href="cntctMe.html">Contact Me</a>
+    
+            <a class="nav" href="#main" style="display:none">Skip to main content</a>
+        </nav>
+        <div class="profileHomeDiv">
+            <a class="nav" href="index.html"><img src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FHOME%20BLACK.png?alt=media&token=94c16ca7-eec3-4c9d-9a66-8b08bc64f25c" onmouseover="this.src='https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FHOME%20BLUE.png?alt=media&token=a7d81eed-45bd-4a12-bae3-f50e6cb31679';" onmouseout="this.src='https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FHOME%20BLACK.png?alt=media&token=94c16ca7-eec3-4c9d-9a66-8b08bc64f25c';" id="profile" style="width: 42px;height:42px;"></a>
+        </div>
+        <main>
+            <div class="titleDiv">
+                <h1 class="title">Create Account</h1>
+            </div>
+            <div class="lineDiv">
+                <hr class="line"></hr>
+            </div>
+            <div class="inputDiv">
+                <input type="text" placeholder="Username" class="input">
+                <input id="emailSignup" type="email" placeholder="Email" class="input"/>
+                <input id="passwordSignup" type="password" placeholder="Password" class="input"/>
+            </div>
+            <div class="buttonDiv">
+                <div class="spacer" style="margin-top:50px"></div>
+                <button class="button" id="signupButton">Signup</button> 
+            </div>
+            <div class="switchLoginSignup">
+                <p style="font-family: 'Courier', 'Sans';">Already have an account? <a href="login.html"> Login here</a></p>
+            </div>
+            <div id="signupErrorDiv" class="loginSignupErrorDiv">
+                <p id = "signupErrorMessage">test</p>
+            </div>
+            <div class="footerLogIn">
+                <hr style="margin-top: 75px;"></hr>
+                <p class="footerText">©2024 Cody Casanave</p>
+                <img class="footerImage" src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FCODYCOOKS.png?alt=media&token=fca0391f-c5fb-4133-8fde-4b9bcd8e5e1a">
+            </div>
+        </main>
+    </body>
+</html>

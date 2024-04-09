@@ -20,7 +20,7 @@
             <a class="nav" href="index.html"><img src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FHOME%20BLACK.png?alt=media&token=94c16ca7-eec3-4c9d-9a66-8b08bc64f25c" onmouseover="this.src='https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FHOME%20BLUE.png?alt=media&token=a7d81eed-45bd-4a12-bae3-f50e6cb31679';" onmouseout="this.src='https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FHOME%20BLACK.png?alt=media&token=94c16ca7-eec3-4c9d-9a66-8b08bc64f25c';" id="profile" style="width: 42px;height:42px;"></a>
         </div>
         <main>
-            <div id = "loginDiv">
+            <div id = "loginDiv" style="visibility: visible;">
                 <div class="titleDiv">
                     <h1 class="title">Log In</h1>
                 </div>
@@ -53,6 +53,7 @@
                     <hr class="line"></hr>
                 </div>
                 <div class="inputDiv">
+                    <input id="usernameSignup" type="text" placeholder="Username" class="input"/>
                     <input id="emailSignup" type="email" placeholder="Email" class="input"/>
                     <input id="passwordSignup" type="password" placeholder="Password" class="input"/>
                 </div>
@@ -67,13 +68,18 @@
                     <p id = "signupErrorMessage"></p>
                 </div>
             </div>
-            <div id="acctDiv">
+            <div id="acctDiv" style="visibility: hidden;">
                 <div class="titleDiv">
-                    <h1 class="title">Welcome, [PLACEHOLDER]!</h1>
+                    <h1 class="title">Welcome,&nbsp <p style="display:inline;" id="username"></p></h1>
                 </div>
                 <div id="userInfo">
-                    <img class="acctDetails" style="height:5%"src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FMail%20logo.png?alt=media&token=8980620e-266e-4dca-b06e-7d6e4b496b77">
-                    <p id="userEmail" class="acctDetails" style="bottom: 12px; left:10px;"></p>
+                    <div id="emailDiv" class="acctDetailsDiv">
+                        <img class="acctDetails" style="height:5%"src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FMail%20logo.png?alt=media&token=8980620e-266e-4dca-b06e-7d6e4b496b77">
+                        <p id="userEmail" class="acctDetails" style="bottom: 12px; left:10px;"></p>
+                    </div>
+                    <div id="usernameDiv" class="acctDetailsDiv">
+                    </div>
+                    
                 </div>
                 <div class="buttonDiv">
                     <div class="spacer" style="margin-top:50px"></div>

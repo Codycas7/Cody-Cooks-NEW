@@ -8,7 +8,8 @@ import {
   AuthErrorCodes,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-  signOut
+  signOut,
+  updateProfile
 } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -88,6 +89,17 @@ const monitorAuthState = async () => {
     if (user) {
       hideElements();
       document.getElementById("userEmail").innerHTML = user.email;
+      
+      updateProfile(auth.currentUser, {
+        displayName: document.getElementById("usernameSignup").value,
+      })
+      .then(() => {
+        document.getElementById("username").innerHTML = user.displayName;
+      })
+      .catch((error) => {
+        console.error("Error updating profile:", error);
+      });
+
       console.log(user);
     }
     else {

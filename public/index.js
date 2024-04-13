@@ -32,7 +32,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-connectAuthEmulator(auth, "http://localhost:9099");
+// connectAuthEmulator(auth, "http://localhost:9099");
 
 const loginEmailPassword = async () => {
   const loginEmail = document.getElementById("emailSignIn").value;
@@ -47,6 +47,8 @@ const loginEmailPassword = async () => {
     showLoginerror(error);
   }
 }
+
+
 
 document.getElementById("loginButton").addEventListener("click", loginEmailPassword);
 
@@ -86,12 +88,14 @@ function showSignupError (error) {
 
 const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
-    if (user) {
+    if (user && document.getElementById("usernameSignup").value != 0) {
+      const uName = document.getElementById("usernameSignup").value;
       hideElements();
+    
       document.getElementById("userEmail").innerHTML = user.email;
       
       updateProfile(auth.currentUser, {
-        displayName: document.getElementById("usernameSignup").value,
+      displayName: uName,
       })
       .then(() => {
         document.getElementById("username").innerHTML = user.displayName;
@@ -101,6 +105,11 @@ const monitorAuthState = async () => {
       });
 
       console.log(user);
+    }
+    else if (user) {
+      hideElements();
+      console.log(user);
+      document.getElementById("userEmail").innerHTML = user.email;
     }
     else {
       document.getElementById("acctDiv").style.visibility = "hidden";
@@ -116,6 +125,11 @@ function hideElements () {
   document.getElementById("signupErrorMessage").innerHTML = "";
   document.getElementById("signupDiv").style.visibility = "hidden";
   document.getElementById("acctDiv").style.visibility = "visible";
+  document.getElementById("usernameSignup").value = "";
+  document.getElementById("emailSignup").value = "";
+  document.getElementById("passwordSignup").value = "";
+  document.getElementById("emailSignIn").value = "";
+  document.getElementById("passwordSignIn").value = "";
 }
 
 monitorAuthState();

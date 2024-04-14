@@ -9,7 +9,9 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
-  updateProfile
+  updateProfile,
+  sendSignInLinkToEmail,
+  sendEmailVerification
 } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -32,7 +34,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-// connectAuthEmulator(auth, "http://localhost:9099");
+connectAuthEmulator(auth, "http://localhost:9099");
 
 const loginEmailPassword = async () => {
   const loginEmail = document.getElementById("emailSignIn").value;
@@ -48,8 +50,6 @@ const loginEmailPassword = async () => {
   }
 }
 
-
-
 document.getElementById("loginButton").addEventListener("click", loginEmailPassword);
 
 const createAccount = async () => {
@@ -57,8 +57,9 @@ const createAccount = async () => {
   const loginPassword = document.getElementById("passwordSignup").value;
 
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword);
-    console.log(userCredential.user);
+    const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
+
+    await sendEmailVerification(auth.currentUser);
   }
   catch (error) {
     console.log(error);
@@ -88,28 +89,26 @@ function showSignupError (error) {
 
 const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
-    if (user && document.getElementById("usernameSignup").value != 0) {
-      const uName = document.getElementById("usernameSignup").value;
-      hideElements();
-    
-      document.getElementById("userEmail").innerHTML = user.email;
-      
+    if (user && document.getElementById("usernameSignup").value != "") {
       updateProfile(auth.currentUser, {
-      displayName: uName,
-      })
-      .then(() => {
-        document.getElementById("username").innerHTML = user.displayName;
-      })
-      .catch((error) => {
-        console.error("Error updating profile:", error);
-      });
-
+        displayName: document.getElementById("usernameSignup").value,
+        })
+        .then(() => {
+          document.getElementById("username").innerHTML = user.displayName;
+        })
+        .catch((error) => {
+          console.error("Error updating profile:", error);
+        });
+      hideElements();
+      document.getElementById("userEmail").innerHTML = user.email;
+      document.getElementById("username").innerHTML = user.displayName;
       console.log(user);
     }
     else if (user) {
       hideElements();
-      console.log(user);
       document.getElementById("userEmail").innerHTML = user.email;
+      document.getElementById("username").innerHTML = user.displayName;
+      console.log(user);
     }
     else {
       document.getElementById("acctDiv").style.visibility = "hidden";

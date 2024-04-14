@@ -44,22 +44,18 @@
     left:0;
     right:0;
 }
-#loginLink {
+.link {
     font-family: 'Courier', 'Sans';
     text-decoration: underline;
+    display:inline;
 }
-#createAcctLink {
-    font-family: 'Courier', 'Sans';
-    text-decoration: underline;
-}
-#loginLink:hover, #loginLink:focus {
+.link:hover, .link:focus {
     color: var(--light2);
     cursor: pointer;
 }
-
-#createAcctLink:hover, #createAcctLink:focus {
-    color: var(--light2);
-    cursor: pointer;
+.linkNextToText {
+    font-family: 'Courier', 'Sans';
+    display:inline;
 }
 body {
     font-size: 1em;

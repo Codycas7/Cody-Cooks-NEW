@@ -99,31 +99,38 @@ const monitorAuthState = async () => {
         .catch((error) => {
           console.error("Error updating profile:", error);
         });
-      hideElements();
+      hideElements(user);
       document.getElementById("userEmail").innerHTML = user.email;
       document.getElementById("username").innerHTML = user.displayName;
       console.log(user);
     }
     else if (user) {
-      hideElements();
+      hideElements(user);
       document.getElementById("userEmail").innerHTML = user.email;
       document.getElementById("username").innerHTML = user.displayName;
       console.log(user);
     }
     else {
       document.getElementById("acctDiv").style.visibility = "hidden";
+      document.getElementById("unverifiedDiv").style.visibility = "hidden";
       document.getElementById("loginDiv").style.visibility = "visible";
     }
   })
 }
 
-function hideElements () {
+function hideElements (user) {
+  if (user.emailVerified == false) {
+    document.getElementById("unverifiedDiv").style.visibility = "visible";
+  }
+  else {
+    document.getElementById("acctDiv").style.visibility = "visible";
+    document.getElementById("unverifiedDiv").style.visibility = "hidden";
+  }
   document.getElementById("signupDiv").style.visibility = "hidden";
   document.getElementById("loginDiv").style.visibility = "hidden";
   document.getElementById("loginErrorMessage").innerHTML = "";
   document.getElementById("signupErrorMessage").innerHTML = "";
   document.getElementById("signupDiv").style.visibility = "hidden";
-  document.getElementById("acctDiv").style.visibility = "visible";
   document.getElementById("usernameSignup").value = "";
   document.getElementById("emailSignup").value = "";
   document.getElementById("passwordSignup").value = "";
@@ -137,4 +144,5 @@ const logout = async () => {
   await signOut(auth);
 }
 
-document.getElementById("logoutButton").addEventListener("click", logout);
+document.getElementById("logoutButton1").addEventListener("click", logout);
+document.getElementById("logoutButton2").addEventListener("click", logout);

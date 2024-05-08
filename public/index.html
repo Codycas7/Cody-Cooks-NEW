@@ -5,9 +5,56 @@
     <link rel="stylesheet" href="style.css" />
     <title>Cody Casanave</title>
     <link rel="stylesheet" href="https://use.typekit.net/fpm8fms.css">
+
+    <script>
+        function showAlert() {
+            alert ("You've unlocked the secret alert! Paste this link into another tab to view my cooking YouTube Channel! https://www.youtube.com/@Codycooks");
+        }
+
+        function updateTime() {
+
+            // get all parts of the current time
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+
+            // add leading zero's to minutes and seconds
+            if (minutes < 10) {
+                minutes = '0' + minutes;
+            }
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+            }
+
+            // get time of day (am or pm)
+            if (hours >= 12 && hours < 24) {
+                var timeOfDay = 'PM';
+            }
+            else {
+                var timeOfDay = 'AM';
+            }
+
+            // convert hours from 24-hour time to 12-hour time
+            if (hours > 12) {
+                hours = hours - 12;
+            }
+
+            // splice them together into a character string named "currentTime"
+            var currentTime = hours + ':' + minutes + " " + timeOfDay;
+
+            // get the clock div
+            var myClock = document.getElementById('clock');
+
+            // write the currentTime string to the clock div
+            myClock.innerHTML = currentTime;
+        }
+    </script>
 </head>
 
 <body>
+    <body onload="setInterval(updateTime, 1000);">
+    
     <nav class="navDiv">
         <a class="nav" href="recipes.html">Recipes</a>
         <a class="nav" href="pics.html">Photos</a>
@@ -62,9 +109,10 @@
             </a>
         </div>
         <div class="footer">
-            <hr style="margin-top: 75px;"></hr>
-            <p class="footerText">©2024 Cody Casanave</p>
-            <img class="footerImage" src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FCODYCOOKS.png?alt=media&token=fca0391f-c5fb-4133-8fde-4b9bcd8e5e1a">
+            <hr class="seperator"></hr>
+            <div id="clock"></div>
+            <p class="footerText">©2024 Cody Casanave. All rights reserved.</p>
+            <img class="footerImage" onclick = "showAlert()" src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FCODYCOOKS.png?alt=media&token=fca0391f-c5fb-4133-8fde-4b9bcd8e5e1a">
         </div>
     </main>
 </body>

@@ -74,18 +74,52 @@
                 </div>
                 <div id="userInfo">
                     <div id="emailDiv" class="acctDetailsDiv">
-                        <img class="acctDetails" style="height:5%"src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FMail%20logo.png?alt=media&token=8980620e-266e-4dca-b06e-7d6e4b496b77">
-                        <p id="userEmail" class="acctDetails" style="bottom: 12px; left:10px;"></p>
+                        <img id="emailPic" class="acctDetails" style="height:5%" src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FMail%20logo.png?alt=media&token=8980620e-266e-4dca-b06e-7d6e4b496b77">
+                        <p id="userEmail" class="acctDetails"></p>
                     </div>
-                    <div id="usernameDiv" class="acctDetailsDiv">
+                    <div id="profilePicDiv" class="acctDetailsDiv">
+                        <img id="profilePic" class="acctDetails" src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FProfile%20Picture-2.png?alt=media&token=27109920-e8c2-4ed2-b11f-5abf99d04666">
+                        <div class="buttonDiv">
+                            <label id="fileInputButton" for="fileInput" class="button" style="display:block; scale:60%;">Change</label>
+                            <input type="file" id="fileInput" style="display:none;">
+                        </div>
+                        <p id="fileInfo"></p>
+                        <!-- <script>
+                            
+                        </script> -->
                     </div>
-                    
                 </div>
+                <!-- <table id="planTable">
+                    <tr>
+                        <th>Plan</th>
+                        <th>Details</th>
+                        <th>Price</th>
+                    </tr>
+                    <tr>
+                        <td>Basic</td>
+                        <td>Access to all recipes</td>
+                        <td>$5/month</td>
+                    </tr>
+                    <tr>
+                        <td>Gold</td>
+                        <td>Access to all recipes + guest features</td>
+                        <td>$10/month</td>
+                    </tr>
+                    <tr>
+                        <td>Platinum</td>
+                        <td>Access to all recipes, guest features, and request one free personalized recipe per month</td>
+                        <td>$50/month</td>
+                    </tr>
+                    <tr>
+                        <td>Rhodium-plated Silver</td>
+                        <td>I'll come to your house</td>
+                        <td>$500/month</td>
+                    </tr>
+                </table> -->
                 <div class="buttonDiv">
                     <div class="spacer" style="margin-top:50px"></div>
                     <button class="button" id="logoutButton1">Log Out</button>
                 </div>
-                
             </div>
             <div id="unverifiedDiv" style="position: absolute; visibility: hidden; top:50px; width:100%;">
                 <div class="titleDiv">
@@ -103,11 +137,12 @@
                 <div class="buttonDiv">
                     <div class="spacer" style="margin-top:50px"></div>
                     <button class="button" id="logoutButton2">Log Out</button>
+                    <button class="button" id="changeUsername">Change Username</button>
                 </div>
             </div>
             
-            <div class="footer">
-                <hr style="margin-top: 75px;"></hr>
+            <div class="footerAcct" id="footerAcct">
+                <hr clsss="seperaor"></hr>
                 <p class="footerText">©2024 Cody Casanave</p>
                 <img class="footerImage" src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FCODYCOOKS.png?alt=media&token=fca0391f-c5fb-4133-8fde-4b9bcd8e5e1a">
             </div>

@@ -57,9 +57,14 @@ const createAccount = async () => {
   const loginPassword = document.getElementById("passwordSignup").value;
 
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
+    if (document.getElementById("usernameSignup").value != "" && !document.getElementById("usernameSignup").value.includes(" ")) {
+      const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword);
+      await sendEmailVerification(auth.currentUser);
+    }
 
-    await sendEmailVerification(auth.currentUser);
+    else {
+      throw "username error";
+    }
   }
   catch (error) {
     console.log(error);
@@ -82,6 +87,9 @@ function showSignupError (error) {
   if (error.code == AuthErrorCodes.INVALID_PASSWORD) {
     document.getElementById("signupErrorMessage").innerHTML = "Wrong password. Try again.";
   }
+  else if (error == "username error") {
+    document.getElementById("signupErrorMessage").innerHTML = 'Error: username field must be filled out and cannot have spaces';
+  }
   else {
     document.getElementById("signupErrorMessage").innerHTML = `Error: ${error.message}`;
   }
@@ -102,18 +110,21 @@ const monitorAuthState = async () => {
       hideElements(user);
       document.getElementById("userEmail").innerHTML = user.email;
       document.getElementById("username").innerHTML = user.displayName;
+      document.getElementById("footerAcct").style.position = "relative";
       console.log(user);
     }
     else if (user) {
       hideElements(user);
       document.getElementById("userEmail").innerHTML = user.email;
       document.getElementById("username").innerHTML = user.displayName;
+      document.getElementById("footerAcct").style.position = "relative";
       console.log(user);
     }
     else {
       document.getElementById("acctDiv").style.visibility = "hidden";
       document.getElementById("unverifiedDiv").style.visibility = "hidden";
       document.getElementById("loginDiv").style.visibility = "visible";
+      document.getElementById("footerAcct").style.position = "absolute";
     }
   })
 }
@@ -144,5 +155,24 @@ const logout = async () => {
   await signOut(auth);
 }
 
+function updateProfilePic () {
+  const fileName = "";
+  const fileInput = document.getElementById("fileInput");
+  const fileInfo = document.getElementById("fileInfo");
+  const user = auth.currentUser;
+
+  fileInput.addEventListener("change", (event) => {
+      console.log("success");
+      const file = event.target.files[0]; // Get the first selected file
+      if (file) {
+          fileName = file.name + " " + user.email;
+          // Display file information
+          fileInfo.innerHTML = `Selected file: ${fileName} (${file.size} bytes)`;
+      } else {
+          fileInfo.innerHTML = "No file selected.";
+      }
+  });
+}
+document.getElementById("fileInput").addEventListener("change", updateProfilePic());
 document.getElementById("logoutButton1").addEventListener("click", logout);
 document.getElementById("logoutButton2").addEventListener("click", logout);

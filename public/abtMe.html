@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css" />
+        <title>Cody Casanave</title>
+        <link rel="stylesheet" href="https://use.typekit.net/fpm8fms.css">
+
+        <script>
+            // create a few global variables to be used later
+            var video, speed, volume;
+
+            function init() {
+            // initialize the player
+            // first, get the media element and assign it to the video variable
+            video = document.getElementById('myVideo');
+
+            // get the current playbackRate from the HTML5 media API
+            // range is 0 to very fast, with 1 being normal playback
+            speed = video.playbackRate;
+
+            // volume range is 0 to 1
+            // set it in the middle so we have room to move it with our buttons
+            volume = 0.5;
+            video.volume = volume;
+            }
+
+            function changeSpeed(direction) {
+                // direction is either 'up' (faster) or 'down' (slower)
+                if (direction == 'up') {
+                    if (speed < 10) {
+                    // increase playbackRate
+                    speed = speed + 0.1;
+                    }
+                }
+                else if (direction == 'down') {
+                    if (speed > 0) {
+                    // decrease playbackRate
+                    speed = speed - 0.1;
+                    }
+                }
+                // so far all we've done is change the value of our speed variable
+                // not let's assign it to the player
+                video.playbackRate = speed;
+            }
+
+            function changeVolume(direction) {
+                if (direction == 'up') {
+                    // if not fully cranked yet, increase volume
+                    if (volume < 0.9) {
+                    volume = volume + 0.1;
+                    }
+                }
+                else if (direction == 'down') {
+                    // if not muted, decrease volume
+                    if (volume > 0.1) {
+                    volume = volume - 0.1;
+                    }
+                }
+                // so far all we've done is change the value of our volume variable
+                // not let's assign it to the player
+                video.volume = volume;
+            }
+
+            // wait until the web page has finished loading, then run the init function
+            window.onload = init;
+        </script>
+    </head>
+    <body>
+        <nav class="navDiv">
+            <a class="nav" href="recipes.html">Recipes</a>
+            <a class="nav" href="pics.html">Photos</a>
+            <a class="nav" href="guest.html">Guest Features</a>
+            <a class="nav" href="abtMe.html">About Me</a>
+            <a class="nav" href="cntctMe.html">Contact Me</a>
+    
+            <a class="nav" href="#main" style="display:none">Skip to main content</a>
+        </nav>
+        <div class="profileHomeDiv">
+            <a class="nav" href="index.html"><img src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FHOME%20BLACK.png?alt=media&token=94c16ca7-eec3-4c9d-9a66-8b08bc64f25c" onmouseover="this.src='https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FHOME%20BLUE.png?alt=media&token=a7d81eed-45bd-4a12-bae3-f50e6cb31679';" onmouseout="this.src='https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FHOME%20BLACK.png?alt=media&token=94c16ca7-eec3-4c9d-9a66-8b08bc64f25c';" id="profile" style="width: 42px;height:42px;"></a>
+        </div>
+        <div class="titleDiv">
+            <h1 class="title">About Me</h1>
+        </div>
+        <div class="lineDiv">
+            <hr class="line" style="width: 50px; margin-top:-50px; margin-bottom:50px"></hr>
+        </div>
+        <div id="aboutMeDiv">
+            <div id="codyDiv">
+                <img id = "codyPic" src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FIMG_2304.jpg?alt=media&token=4d493335-3898-4ef7-bb16-1b8b8a8f6ae2">
+            </div>
+            <p class="generalText" id="aboutMeText">
+                This is my cooking blog! This website is a compilation of all the recipes I have created over the past three years.
+                It also includes photos of these various meals. I am also giving other people the oppertunity to feature their recipes
+                and photos on this website. If you want to create an account and subscribe to a plan in order to unlock permium recipes,
+                you can also do that. I hope to spread my love for food and give my fellow foodies inspiration!
+            </p>
+            <div id="videoDiv">
+                <video id="myVideo" controls>
+                    <source src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FSteak%20Sandwich!%20%23food%20%23cooking%20%23steak.mp4?alt=media&token=59e69e09-4fec-4fd2-be27-792648663ce7">
+                </video>
+            </div>
+            <button class="button" onclick="changeSpeed('up')">Faster</button>
+            <button class="button" onclick="changeSpeed('down')">Slower</button>
+            <button class="button" onclick="changeVolume('up')">Louder</button>
+            <button class="button" onclick="changeVolume('down')">Softer</button>
+        </div>
+        <div class="footerAcct">
+            <hr class="seperator"></hr>
+            <p class="footerText">©2024 Cody Casanave. All rights reserved.</p>
+            <img class="footerImage" src="https://firebasestorage.googleapis.com/v0/b/cody-cooks.appspot.com/o/Media%2FLOGOS%2FCODYCOOKS.png?alt=media&token=fca0391f-c5fb-4133-8fde-4b9bcd8e5e1a">
+        </div>
+    </body>
+</html>
